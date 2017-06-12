@@ -1,21 +1,18 @@
 ﻿@model IEnumerable<Movy.Models.Movie>
 
 @{
-    ViewBag.Title = "All Movies";
+    ViewBag.Title = "Index";
 }
 
-<h2>All movies</h2>
+<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Add", "Add")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Director)
         </th>
         <th></th>
     </tr>
@@ -24,9 +21,6 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Director)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

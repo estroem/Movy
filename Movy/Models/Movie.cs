@@ -15,7 +15,6 @@ namespace Movy.Models
         [Required]
         public string Name { get; set; }
 
-        [Required]
-        public string Director { get; set; }
+        public virtual ICollection<Person> Directors { get; set; }
     }
 }

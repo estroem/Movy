@@ -28,6 +28,12 @@ namespace Movy.Models
         {
             Database.SetInitializer<ApplicationDbContext>(null);
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Movie>()
+                .HasMany(c => c.Directors).WithMany(i => i.Movies)
+                .Map(t => t.MapLeftKey("Movie_Id")
+                    .MapRightKey("Person_Id")
+                    .ToTable("Directors"));
         }
 
 

@@ -1,12 +1,12 @@
 ﻿@model Movy.Models.Movie
 
 @{
-    ViewBag.Title = "Add";
+    ViewBag.Title = "Create";
 }
 
-<h2>Add</h2>
+<h2>Create</h2>
 
-@using (Html.BeginForm("Add", "Movie", null, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
@@ -23,17 +23,13 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Director, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Director, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Director, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

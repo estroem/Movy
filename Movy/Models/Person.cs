@@ -17,5 +17,15 @@ namespace Movy.Models
 
         [Required]
         public string Lastname { get; set; }
+
+        public string Name
+        {
+            get
+            {
+                return String.Format("{0} {1}", Firstname, Lastname);
+            }
+        }
+
+        public virtual ICollection<Movie> Movies { get; set; }
     }
 }
