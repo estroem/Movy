@@ -1,24 +1,24 @@
-﻿@model Movy.Models.Movie
+﻿@model Movy.Models.Character
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>@Html.DisplayFor(model => model.Name)</h2>
+<h2>Details</h2>
 
 <div>
+    <h4>Character</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Directors)
+            @Html.DisplayNameFor(model => model.Name)
         </dt>
+
         <dd>
-            @String.Join(", ", Model.Directors.Select(x => x.Name).ToArray())
+            @Html.DisplayFor(model => model.Name)
         </dd>
+
     </dl>
-    <h4>Starring</h4>
-    <table>
-    </table>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

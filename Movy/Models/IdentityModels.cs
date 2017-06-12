@@ -45,5 +45,7 @@ namespace Movy.Models
         public DbSet<Movie> Movies { get; set; }
 
         public DbSet<Person> People { get; set; }
+
+        public System.Data.Entity.DbSet<Movy.Models.Character> Characters { get; set; }
     }
 }
