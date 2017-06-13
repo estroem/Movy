@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Movy.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Movy.Controllers
 {
@@ -115,6 +116,21 @@ namespace Movy.Controllers
             db.Movies.Remove(movie);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        
+        [HttpPost]
+        public ActionResult AddReview(int rating, string reviewText, int movieId)
+        {
+            var user = db.Users.Find(User.Identity.GetUserId());
+            var movie = db.Movies.Find(movieId);
+            var review = new Review { Rating = rating, Text = reviewText, Movie = movie, User = user };
+
+            movie.Reviews.Add(review);
+
+            db.Reviews.Add(review);
+            db.SaveChanges();
+            
+            return Content("Review Added Successfully");
         }
 
         protected override void Dispose(bool disposing)

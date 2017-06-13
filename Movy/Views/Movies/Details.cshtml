@@ -19,16 +19,63 @@
 
     </dl>
 
-    <h3>Starring</h3>
+    <h3>@Html.DisplayNameFor(model => model.Roles)</h3>
     <table>
         @foreach (var act in Model.Roles)
         {
-            <tr><td>@Html.ActionLink(act.Person.Name, "Details", "People", new { id = act.Person.Id }, null)</td></tr>
+            <tr><td>@Html.ActionLink(act.Person.Name, "Details", "People", new { id = act.Person.Id })</td></tr>
         }
     </table>
 </div>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Reviews)</h3>
+<div id="reviews">
+    @foreach(var review in Model.Reviews.Reverse())
+    {
+        <div class="row">
+            <div class="col-md-3">
+                Rating: @review.Rating<br />
+                @review.User.UserName
+            </div>
+            <div class="col-md-9">
+                @review.Text
+            </div>
+        </div>
+    }
+</div>
+<hr />
+<h4>Add review</h4>
+<form action="#" id="addReviewForm">
+    <input type="text" name="rating" id="rating" /><br />
+    <textarea name="review" id="review"></textarea><br />
+    <input type="submit" value="Add" class="btn btn-default" />
+</form>
 <hr />
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+@section Scripts{
+<script>
+    $('#addReviewForm').submit(function() {
+        var rating = $('#rating').val();
+        var reviewText = $('#review').val();
+        $.post('@Url.Action("AddReview")', { rating: rating, reviewText: reviewText, movieId: @Model.Id })
+            .done(function (response) {
+                var row = $('<div/>').attr("class", "row mark");
+                var col1 = $('<div/>').attr("class", "col-md-3").html("Rating: " + rating + "<br />@User.Identity.Name");
+                var col2 = $('<div/>').attr("class", "col-md-9").text(reviewText);
+
+                row.append(col1);
+                row.append(col2);
+
+                $('#reviews').prepend(row);
+                
+                $('#rating').val("");
+                $('#review').val("");
+        });
+        return false;
+    });
+</script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+}
