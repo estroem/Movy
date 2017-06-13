@@ -37,7 +37,7 @@
     <table>
         @foreach (var act in Model.Roles)
         {
-            <tr><td>@Html.ActionLink(act.Person.Name, "Details", "People", new { id = act.Person.Id })</td></tr>
+            <tr><td>@Html.ActionLink(act.Person.Name, "Details", "People", new { id = act.Person.Id }, null)</td></tr>
         }
     </table>
 </div>
