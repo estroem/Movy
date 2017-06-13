@@ -4,8 +4,21 @@
     ViewBag.Title = "Details";
 }
 
+@Styles.Render("~/Content/Rating.css")
+
 <h2>@Model.Name</h2>
-<h5>Average rating: @Model.GetAverageRating()/10</h5>
+@for(var i = 0; i < Movy.Models.Movie.MAX_RATING; i++)
+{
+    if (i < Model.GetAverageRating())
+    {
+        <span class="glyphicon glyphicon-star ratingstar-yellow"></span>
+    }
+    else
+    {
+        <span class="glyphicon glyphicon-star"></span>
+    }
+}
+<h5>Average rating: @Model.GetAverageRating() / 10</h5>
 <div>
     <hr />
     <dl class="dl-horizontal">
@@ -33,7 +46,7 @@
 <div id="reviews">
     @foreach(var review in Model.Reviews.Reverse())
     {
-        <div class="row">
+        <div class="row well">
             <div class="col-md-3">
                 Rating: @review.Rating<br />
                 @review.User.UserName
@@ -47,7 +60,7 @@
 <hr />
 <h4>Add review</h4>
 <form action="#" id="addReviewForm">
-    <input type="text" name="rating" id="rating" /><br />
+    <span id="ratingStars"></span><br />
     <textarea name="review" id="review"></textarea><br />
     <input type="submit" value="Add" class="btn btn-default" />
 </form>
@@ -58,12 +71,28 @@
 </p>
 @section Scripts{
 <script>
+    var max_rating = @Movy.Models.Movie.MAX_RATING;
+    var stars = $('#ratingStars');
+    var star = $('<span>').attr("class", "glyphicon glyphicon-star ratingstar");
+    var rating = 0;
+
+    for(var i = 1; i <= max_rating; i++) {
+        stars.append(star.clone().attr("id", i).click(function() {
+            resetStars();
+
+            rating = parseInt($(this).attr("id"));
+
+            for(var i = 1; i <= rating; i++) {
+                $('#' + i).attr("class", "glyphicon glyphicon-star ratingstar ratingstar-yellow");
+            }
+        }));
+    }
+
     $('#addReviewForm').submit(function() {
-        var rating = $('#rating').val();
         var reviewText = $('#review').val();
         $.post('@Url.Action("AddReview")', { rating: rating, reviewText: reviewText, movieId: @Model.Id })
             .done(function (response) {
-                var row = $('<div/>').attr("class", "row mark");
+                var row = $('<div/>').attr("class", "row well");
                 var col1 = $('<div/>').attr("class", "col-md-3").html("Rating: " + rating + "<br />@User.Identity.Name");
                 var col2 = $('<div/>').attr("class", "col-md-9").text(reviewText);
 
@@ -72,11 +101,15 @@
 
                 $('#reviews').prepend(row);
                 
-                $('#rating').val("");
                 $('#review').val("");
+                resetStars();
         });
         return false;
     });
+
+    function resetStars() {
+        stars.children().attr("class", "glyphicon glyphicon-star ratingstar");
+    }
 </script>
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 }

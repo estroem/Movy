@@ -9,6 +9,8 @@ namespace Movy.Models
 {
     public class Movie
     {
+        public const int MAX_RATING = 10;
+
         [Key]
         [Required]
         public int Id { get; set; }
