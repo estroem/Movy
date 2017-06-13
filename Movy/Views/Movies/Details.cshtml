@@ -5,7 +5,7 @@
 }
 
 <h2>@Model.Name</h2>
-
+<h5>Average rating: @Model.GetAverageRating()/10</h5>
 <div>
     <hr />
     <dl class="dl-horizontal">
@@ -14,7 +14,8 @@
         </dt>
 
         <dd>
-            @String.Join(", ", Model.Directors.Select(x => x.Name))
+            @Html.Raw(String.Join(", ", Model.Directors.Select(x =>
+                Html.ActionLink(x.Name, "Details", "People", new { id = x.Id }, null).ToHtmlString())))
         </dd>
 
     </dl>
