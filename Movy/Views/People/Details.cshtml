@@ -4,30 +4,30 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>@Model.Name</h2>
 
-<div>
-    <h4>Person</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Firstname)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Firstname)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Lastname)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Lastname)
-        </dd>
-
-    </dl>
-</div>
+<hr />
+@if (Model.Movies.Count > 0)
+{
+    <h3>Director</h3>
+    <table>
+        @foreach (var movieDirected in Model.Movies)
+        {
+            <tr><td>@Html.ActionLink(movieDirected.Name, "Details", "Movies", new { id = movieDirected.Id }, null)</td></tr>
+        }
+    </table>
+}
+@if (Model.Acts.Count > 0)
+{
+    <h3>Actor</h3>
+    <table>
+        @foreach (var act in Model.Acts)
+        {
+            <tr><td>@Html.ActionLink(act.Movie.Name, "Details", "Movies", new { id = act.Movie.Id }, null)</td></tr>
+        }
+    </table>
+}
+<hr />
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
