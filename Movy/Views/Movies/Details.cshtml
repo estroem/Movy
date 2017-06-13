@@ -21,7 +21,7 @@
 
     <h3>Starring</h3>
     <table>
-        @foreach (var act in Model.Acts)
+        @foreach (var act in Model.Roles)
         {
             <tr><td>@Html.ActionLink(act.Person.Name, "Details", "People", new { id = act.Person.Id }, null)</td></tr>
         }

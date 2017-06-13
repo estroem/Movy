@@ -203,7 +203,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Act.cs" />
+    <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Character.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\IdentityModels.cs" />

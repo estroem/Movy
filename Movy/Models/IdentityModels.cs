@@ -48,6 +48,6 @@ namespace Movy.Models
 
         public DbSet<Character> Characters { get; set; }
 
-        public DbSet<Act> Acts { get; set; }
+        public DbSet<Role> Acts { get; set; }
     }
 }

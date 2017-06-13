@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Movy.Models
 {
-    public class Act
+    public class Role
     {
         public int Id { get; set; }
         public virtual Character Character { get; set; }

@@ -17,6 +17,6 @@ namespace Movy.Models
 
         public virtual ICollection<Person> Directors { get; set; }
 
-        public virtual ICollection<Act> Acts { get; set; }
+        public virtual ICollection<Role> Roles { get; set; }
     }
 }

@@ -17,11 +17,11 @@
         }
     </table>
 }
-@if (Model.Acts.Count > 0)
+@if (Model.Roles.Count > 0)
 {
     <h3>Actor</h3>
     <table>
-        @foreach (var act in Model.Acts)
+        @foreach (var act in Model.Roles)
         {
             <tr><td>@Html.ActionLink(act.Movie.Name, "Details", "Movies", new { id = act.Movie.Id }, null)</td></tr>
         }
