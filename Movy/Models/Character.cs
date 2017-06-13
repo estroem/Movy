@@ -14,5 +14,7 @@ namespace Movy.Models
 
         [Required]
         public string Name { get; set; }
+
+        public virtual ICollection<Act> Acts { get; set; }
     }
 }

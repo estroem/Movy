@@ -27,5 +27,7 @@ namespace Movy.Models
         }
 
         public virtual ICollection<Movie> Movies { get; set; }
+
+        public virtual ICollection<Act> Acts { get; set; }
     }
 }

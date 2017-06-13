@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
 }
 
-<h2>@Html.DisplayFor(model => model.Name)</h2>
+<h2>@Model.Name</h2>
 
 <div>
     <hr />
@@ -12,12 +12,19 @@
         <dt>
             @Html.DisplayNameFor(model => model.Directors)
         </dt>
+
         <dd>
-            @String.Join(", ", Model.Directors.Select(x => x.Name).ToArray())
+            @String.Join(", ", Model.Directors.Select(x => x.Name))
         </dd>
+
     </dl>
-    <h4>Starring</h4>
+
+    <h3>Starring</h3>
     <table>
+        @foreach (var act in Model.Acts)
+        {
+            <tr><td>@Html.ActionLink(act.Person.Name, "Details", "People", new { id = act.Person.Id }, null)</td></tr>
+        }
     </table>
 </div>
 <p>

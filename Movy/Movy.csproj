@@ -185,8 +185,25 @@
     <Compile Include="Migrations\201706122300032_AddCharacter.Designer.cs">
       <DependentUpon>201706122300032_AddCharacter.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706122341177_AddActs.cs" />
+    <Compile Include="Migrations\201706122341177_AddActs.Designer.cs">
+      <DependentUpon>201706122341177_AddActs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706122354236_ChangeActorToPersonInAct.cs" />
+    <Compile Include="Migrations\201706122354236_ChangeActorToPersonInAct.Designer.cs">
+      <DependentUpon>201706122354236_ChangeActorToPersonInAct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706130018272_RemoveAct.cs" />
+    <Compile Include="Migrations\201706130018272_RemoveAct.Designer.cs">
+      <DependentUpon>201706130018272_RemoveAct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706130020438_ReAddAct.cs" />
+    <Compile Include="Migrations\201706130020438_ReAddAct.Designer.cs">
+      <DependentUpon>201706130020438_ReAddAct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Act.cs" />
     <Compile Include="Models\Character.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -287,6 +304,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706122300032_AddCharacter.resx">
       <DependentUpon>201706122300032_AddCharacter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706122341177_AddActs.resx">
+      <DependentUpon>201706122341177_AddActs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706122354236_ChangeActorToPersonInAct.resx">
+      <DependentUpon>201706122354236_ChangeActorToPersonInAct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706130018272_RemoveAct.resx">
+      <DependentUpon>201706130018272_RemoveAct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706130020438_ReAddAct.resx">
+      <DependentUpon>201706130020438_ReAddAct.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
