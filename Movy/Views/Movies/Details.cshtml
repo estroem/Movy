@@ -7,9 +7,9 @@
 @Styles.Render("~/Content/Rating.css")
 
 <h2>@Model.Name</h2>
-@for(var i = 0; i < Movy.Models.Movie.MAX_RATING; i++)
+@for(var i = 1; i <= Movy.Models.Movie.MAX_RATING; i++)
 {
-    if (i < Model.GetAverageRating())
+    if (i <= Math.Floor(Model.GetAverageRating()))
     {
         <span class="glyphicon glyphicon-star ratingstar-yellow"></span>
     }
@@ -18,7 +18,7 @@
         <span class="glyphicon glyphicon-star"></span>
     }
 }
-<h5>Average rating: @Model.GetAverageRating() / 10</h5>
+<h5>Average rating: @String.Format("{0:0.0}", Model.GetAverageRating()) / 10</h5>
 <div>
     <hr />
     <dl class="dl-horizontal">

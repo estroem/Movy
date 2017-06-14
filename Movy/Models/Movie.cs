@@ -26,10 +26,10 @@ namespace Movy.Models
 
         public virtual ICollection<Review> Reviews { get; set; }
 
-        public int GetAverageRating() {
+        public float GetAverageRating() {
             if (Reviews.Count == 0)
                 return 0;
-            int sum = 0;
+            float sum = 0;
             foreach(Review review in Reviews)
                 sum += review.Rating;
             return sum / Reviews.Count;
