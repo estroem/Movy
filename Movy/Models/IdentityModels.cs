@@ -48,7 +48,7 @@ namespace Movy.Models
 
         public DbSet<Character> Characters { get; set; }
 
-        public DbSet<Role> Acts { get; set; }
+        public DbSet<Role> ActingRoles { get; set; }
 
         public DbSet<Review> Reviews { get; set; }
     }

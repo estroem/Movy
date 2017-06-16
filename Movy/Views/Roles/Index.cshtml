@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Movy.Models.Role>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Character)</th>
+        <th>Actor</th>
+        <th>@Html.DisplayNameFor(model => model.Movie)</th><th></th>
+    </tr>
+    @User.Identity.
+@foreach (var item in Model) {
+    <tr>
+        <td>@item.Character.Name</td><td>@item.Person.Name</td><td>@item.Movie.Name</td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
