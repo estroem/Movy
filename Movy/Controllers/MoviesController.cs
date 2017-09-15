@@ -118,6 +118,7 @@ namespace Movy.Controllers
             return RedirectToAction("Index");
         }
         
+        [Authorize]
         [HttpPost]
         public ActionResult AddReview(int rating, string reviewText, int movieId)
         {

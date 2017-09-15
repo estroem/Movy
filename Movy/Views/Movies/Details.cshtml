@@ -42,13 +42,16 @@
     </table>
 </div>
 <hr />
-<h4>Add review</h4>
-<form action="#" id="addReviewForm">
-    <span id="ratingStars"></span><br />
-    <textarea name="review" id="review"></textarea><br />
-    <input type="submit" value="Add" class="btn btn-default" />
-</form>
-<hr />
+@if (User.Identity.IsAuthenticated)
+{
+    <h4>Add review</h4>
+    <form action="#" id="addReviewForm">
+        <span id="ratingStars"></span><br />
+        <textarea name="review" id="review"></textarea><br />
+        <input type="submit" value="Add" class="btn btn-default" />
+    </form>
+    <hr />
+}
 <h3>@Html.DisplayNameFor(model => model.Reviews)</h3>
 <div id="reviews">
     @foreach(var review in Model.Reviews.Reverse())
