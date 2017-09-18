@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Movy.Models;
 using Microsoft.AspNet.Identity;
+using System.IO;
 
 namespace Movy.Controllers
 {
@@ -116,6 +117,47 @@ namespace Movy.Controllers
             db.Movies.Remove(movie);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [Authorize]
+        public ActionResult UploadTrailer(int id)
+        {
+            Movie movie = db.Movies.Find(id);
+            UploadTrailerViewModel UTViewModel = new UploadTrailerViewModel { Movie = movie, Uploaded = false};
+            return View(UTViewModel);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult UploadTrailer(int id, HttpPostedFileBase file)
+        {
+            Movie movie = db.Movies.Find(id);
+
+            if (movie == null)
+            {
+                // movie not found
+            }
+
+            bool success = false;
+
+            try
+            {
+                if (file.ContentLength > 0 && file.FileName.Contains(".mp4"))
+                {
+                    string path = Path.Combine(Server.MapPath("~/Trailers"), id.ToString() + ".mp4");
+                    file.SaveAs(path);
+
+                    success = true;
+                }
+            }
+            catch
+            {
+                success = false;
+            }
+
+            UploadTrailerViewModel UTViewModel = new UploadTrailerViewModel { Movie = movie, Uploaded = true, Successful = success };
+
+            return View(UTViewModel);
         }
         
         [Authorize]

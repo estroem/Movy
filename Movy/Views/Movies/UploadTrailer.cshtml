@@ -1,0 +1,19 @@
+﻿@model Movy.Models.UploadTrailerViewModel
+
+@{
+    ViewBag.Title = "Upload Trailer";
+}
+
+<h2>Upload Trailer</h2>
+
+@using (Html.BeginForm("UploadTrailer", "Movies", new { id = Model.Movie.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        @Html.TextBox("file", "", new { type = "file" }) <br />
+        <input type="submit" value="Upload" />
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
